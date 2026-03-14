@@ -136,17 +136,3 @@ mkdocs serve
 Preview at [http://localhost:8000](http://localhost:8000). Submit fixes as a PR to `main` in that repo — the GitHub Actions workflow deploys it to GitHub Pages automatically.
 
 ---
-
-## Commit style
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
-
-| Prefix | When to use |
-|--------|------------|
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation only |
-| `refactor:` | Code change with no feature/fix |
-| `chore:` | Build, CI, dependencies |
-
-Example: `fix: prevent reconnect loop when room does not exist`

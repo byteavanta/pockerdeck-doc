@@ -1,8 +1,8 @@
 site_name: PockerDeck
 site_description: Lightweight real-time Planning Poker for agile teams
 site_url: https://byteavanta.github.io/pockerdeck-doc/
-repo_url: https://github.com/byteavanta/pockerdeck-doc
-repo_name: byteavanta/pockerdeck-doc
+repo_url: https://github.com/byteavanta/pockerdeck
+repo_name: byteavanta/pockerdeck
 edit_uri: edit/main/docs/
 
 theme:

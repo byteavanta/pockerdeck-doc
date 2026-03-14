@@ -130,12 +130,3 @@ The frontend is plain JavaScript with no build step or framework. Responsibiliti
 - Persist the user's display name in `sessionStorage` (scoped per room)
 
 ---
-
-## In-memory storage
-
-Rooms are stored entirely in a Python dictionary in the server process. This has two implications:
-
-1. **No persistence** — rooms are lost on server restart.
-2. **Single process** — horizontal scaling requires a shared state backend (not currently implemented).
-
-For teams using PockerDeck in a single-server setup, neither limitation is a practical concern.
