@@ -47,6 +47,7 @@ nav:
       - Docker: deployment.md
       - Docker Hub: dockerhub.md
   - Architecture: architecture.md
+  - Contributing: contributing.md
 
 markdown_extensions:
   - admonition
