@@ -7,9 +7,12 @@ A complete walkthrough of every PockerDeck feature.
 ## Creating a room
 
 1. Open the app (e.g. [http://localhost:8000](http://localhost:8000)).
-2. Click **+ Create Room**.  
-   You are redirected to a new room with a unique 8-character code (e.g. `a1b2c3d4`).
-3. Share the URL or the room code with your team.
+2. Optionally configure the session before creating:
+    - **Estimation Type** — pick Story Points, T-shirt, Hours, or Custom, then add/remove cards as needed.
+    - **Backlog Items** — add the stories you plan to estimate (up to 50).
+3. Click **+ Create Room**.  
+   You are redirected to a new room with a unique 8-character code. You become the **Admin** automatically.
+4. Share the URL or the room code with your team via **📋 Copy Link**.
 
 ---
 
@@ -22,7 +25,25 @@ Two ways to join:
 | **Direct URL** | Open the shared link — the app takes you straight to the room. |
 | **Room code** | On the home page, enter the code in the *"Join with a code"* field and press **Join →** or `Enter`. |
 
-When you land on the room page for the first time, you are prompted to enter your **display name**. This name is visible to everyone in the room. Your name is remembered per-room using `sessionStorage`, so you won't be asked again if you reload the page.
+When you land on the room page for the first time, you are prompted to enter your **display name** and pick a **role**.
+
+---
+
+## Roles
+
+| Role | Who | Permissions |
+|------|-----|-------------|
+| **Admin** | Room creator | Everything: vote, reveal, new round, edit story, manage backlog, kick users, rename users |
+| **Participant** | Anyone who joins as a participant | Vote, reveal, start new round, edit story |
+| **Viewer** | Anyone who joins as a viewer | Watch only — no voting or actions |
+
+!!! info
+    The Admin role is assigned automatically to the room creator and cannot be chosen at join time. If the Admin leaves, the next available Participant is promoted automatically.
+
+**Admin-only actions on participant cards:**
+
+- **✏️ Rename** — change a user's display name.
+- **✕ Kick** — remove a user from the room.
 
 ---
 
@@ -79,7 +100,23 @@ After revealing, click **New Round** to:
 - Reset the revealed state
 - Keep the current participants and story description
 
-Everyone's card selection is cleared and the voting panel returns.
+Everyone's card selection is cleared and the voting panel returns.  
+The active backlog item stays selected so the team can vote on it again if needed.
+
+---
+
+## Backlog
+
+If backlog items were added when the room was created, a **Backlog** panel appears at the top of the room.
+
+| Item state | Appearance | Admin action |
+|------------|------------|--------------|
+| Pending | Normal row | **Vote on this** button to make it active |
+| Active | Highlighted with **▶ Voting** badge | **✓ Mark Done** button to complete it |
+| Done | Greyed out with strikethrough | — |
+
+!!! tip
+    Selecting a backlog item automatically fills the **Story** field for all participants.
 
 ---
 
@@ -101,4 +138,5 @@ If the room no longer exists on the server (e.g. after a restart), you are redir
 | Shortcut | Action |
 |----------|--------|
 | `Enter` in name field | Confirm display name |
-| `Enter` in story field | Save story description |
+| `Enter` in story field | Save story description || `Enter` in backlog input | Add backlog item (create room page) |
+| `Enter` in card input | Add card value (create room page) |

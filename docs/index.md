@@ -23,6 +23,18 @@ No account, no sign-up — create a room, share the link, and start estimating i
 
     Votes stay hidden until the host clicks **Reveal**. Prevents anchoring bias.
 
+-   :material-account-group:{ .lg .middle } **Roles — Admin, Participant, Viewer**
+
+    ---
+
+    Room creator is Admin. Joiners choose Participant or Viewer. Admins can kick, rename, and manage the backlog.
+
+-   :material-format-list-bulleted:{ .lg .middle } **Backlog management**
+
+    ---
+
+    Add stories before creating the room. The Admin picks which item is being voted; completed items are marked Done.
+
 -   :material-docker:{ .lg .middle } **Fully Dockerised**
 
     ---
@@ -35,31 +47,27 @@ No account, no sign-up — create a room, share the link, and start estimating i
 
 ## How it works
 
-1. One team member opens PockerDeck and creates a **room**.
-2. Everyone else joins using the **room code** or the shared URL.
-3. Each participant enters their **display name** and picks a **story point card**.
-4. The host clicks **Reveal** — all votes appear at once.
-5. The results panel shows the **average**, **minimum**, and **maximum** estimates.
-6. Click **New Round** to reset and move on to the next story.
+1. One team member opens PockerDeck, optionally adds **Backlog Items** and picks an **Estimation Type**, then clicks **+ Create Room** — becoming the **Admin**.
+2. Everyone else joins using the **room code** or the shared URL and picks a role (**Participant** or **Viewer**).
+3. The Admin selects the first backlog item (or types a story description manually) — it is shared with everyone instantly.
+4. Each participant clicks a **card** to cast their vote.
+5. Any participant or the Admin clicks **Reveal** — all votes appear at once.
+6. The results panel shows the **average**, **minimum**, and **maximum** estimates.
+7. Click **New Round** to reset votes and keep estimating, or the Admin picks the next backlog item.
+8. Once a story is fully estimated, the Admin clicks **✓ Mark Done** on it in the Backlog panel.
 
 ---
 
-## Card values
+## Estimation types
 
-| Card | Points |
-|------|--------|
-| `3`  | 3 |
-| `6`  | 6 |
-| `9`  | 9 |
-| `12` | 12 |
-| `15` | 15 |
-| `18` | 18 |
-| `21` | 21 |
-| `24` | 24 |
-| `27` | 27 |
-| `30` | 30 |
-| `30+` | More than 30 (needs splitting) |
-| `?`  | Unsure / need more info |
+| Type | Default cards |
+|------|---------------|
+| **Story Points** (default) | `1 2 3 5 8 13 21 34 55 ?` |
+| **T-shirt sizes** | `XS S M L XL XXL ?` |
+| **Hours** | `3 6 9 12 15 18 21 24 27 30 30+ ?` |
+| **Custom** | Any values you define |
+
+Card values can be individually added or removed before creating the room.
 
 ---
 
