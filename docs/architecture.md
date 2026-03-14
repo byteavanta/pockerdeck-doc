@@ -61,17 +61,25 @@ Each room is a plain Python dictionary:
 ```python
 {
     "users": {
-        "Alice": "8",      # voted
-        "Bob":  None,      # not voted yet
+        "Alice": {"vote": "8", "role": "admin"},
+        "Bob":   {"vote": None, "role": "user"},
+        "Carol": {"vote": None, "role": "viewer"},
     },
     "revealed": False,
     "story": "As a user I want to…",
+    "admin": "Alice",
+    "cards": ["1", "2", "3", "5", "8", "13", "21", "34", "55", "?"],
+    "backlog": [
+        {"title": "User login", "done": True},
+        {"title": "Password reset", "done": False},
+    ],
+    "active_bli": 1,   # index of the currently voted backlog item, or None
 }
 ```
 
 ### `build_state(room_id)`
 
-Assembles the JSON payload broadcast to all clients after any state change. Anonymises votes when `revealed` is `False` — clients only see `"voted"` or `null`, never the actual value until the host reveals.
+Assembles the JSON payload broadcast to all clients after any state change. Anonymises votes when `revealed` is `False` — clients only see `"voted"` or `null`, never the actual value until the host reveals. Also includes `admin`, `backlog`, `active_bli`, and the user's `role` in every broadcast.
 
 ---
 
@@ -111,12 +119,16 @@ When `revealed` is `true`, actual vote values are sent instead of `"voted"`:
 
 ### Client → Server (action messages)
 
-| Action | Payload | Description |
-|--------|---------|-------------|
-| `vote` | `{ "action": "vote", "value": "8" }` | Cast or change a vote |
-| `reveal` | `{ "action": "reveal" }` | Reveal all votes |
-| `reset` | `{ "action": "reset", "story": "…" }` | Start a new round |
-| `set_story` | `{ "action": "set_story", "story": "…" }` | Update the story text |
+| Action | Allowed roles | Payload | Description |
+|--------|--------------|---------|-------------|
+| `vote` | admin, participant | `{ "action": "vote", "value": "8" }` | Cast or change a vote |
+| `reveal` | admin, participant | `{ "action": "reveal" }` | Reveal all votes |
+| `reset` | admin, participant | `{ "action": "reset", "story": "…" }` | Start a new round |
+| `set_story` | admin, participant | `{ "action": "set_story", "story": "…" }` | Update the story text |
+| `select_bli` | admin | `{ "action": "select_bli", "index": 0 }` | Set the active backlog item |
+| `mark_bli_done` | admin | `{ "action": "mark_bli_done", "index": 0 }` | Mark a backlog item as done |
+| `kick` | admin | `{ "action": "kick", "target": "Bob" }` | Remove a user from the room |
+| `rename_user` | admin | `{ "action": "rename_user", "target": "Bob", "new_name": "Robert" }` | Rename a user |
 
 ---
 
